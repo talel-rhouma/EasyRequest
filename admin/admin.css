@@ -1,0 +1,94 @@
+/* style.css */
+body {
+  background-color: #000000;
+  color: #EAEAEA;
+}
+
+.sidebar {
+  background-color: #000000;
+}
+
+.sidebar a {
+  color: #EAEAEA;
+}
+
+.sidebar a:hover {
+  background-color: #FFD700;
+  color: #000000;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Cartes */
+.bg-warning {
+  background-color: #E0B000 !important;
+}
+
+.bg-success {
+  background-color: #28a745 !important;
+}
+
+.bg-danger {
+  background-color: #dc3545 !important;
+}
+
+.bg-info {
+  background-color: #17a2b8 !important;
+}
+
+/* En-têtes */
+h2, h3 {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.text-light {
+  color: #FFFFFF !important;
+
+/* Page de connexion */
+.card-header {
+  background-color: #FFD700;
+}
+
+.card-body {
+  background-color: #333333;
+}
+
+.form-control {
+  border-radius: 10px;
+}
+
+.btn-warning {
+  background-color: #E0B000;
+  border: none;
+  color: #000;
+}
+
+.btn-warning:hover {
+  background-color: #FFD700;
+  color: #000;
+}
+
+.table {
+  background-color: #333333;
+}
+
+.table th, .table td {
+  border-top: 1px solid #444444;
+  text-align: center;
+}
+
+/* Ajout d'un effet de survol sur les lignes de table */
+.table tr:hover {
+  background-color: #444444;
+}
+
+  

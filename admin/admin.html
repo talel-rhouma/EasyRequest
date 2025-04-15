@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyRequest Admin Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #f2c800;
+        }
+
+        .navbar {
+            background-color: #1c1c1c;
+        }
+
+        .navbar a {
+            color: #f2c800;
+        }
+
+        .navbar a:hover {
+            color: #c79e00;
+        }
+
+        .card {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #f2c800;
+        }
+
+        .card-header {
+            background-color: #444;
+        }
+
+        .btn-custom {
+            background-color: #f2c800;
+            color: #000;
+            border: none;
+        }
+
+        .btn-custom:hover {
+            background-color: #c79e00;
+        }
+
+        .form-control {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #f2c800;
+        }
+
+        .login-box {
+            background-color: #1c1c1c;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h2 {
+            text-align: center;
+            color: #f2c800;
+        }
+
+        .table th,
+        .table td {
+            text-align: center;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .form-group label {
+            color: #f2c800;
+        }
+
+        .priority-badge {
+            font-size: 0.8em;
+            padding: 4px 8px;
+        }
+
+        .navbar-nav .nav-item {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="container">
+        <div class="login-box">
+            <h2>Se Connecter</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" class="form-control" id="username" placeholder="Entrez votre nom d'utilisateur" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="container mt-5" style="display: none;">
+        <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="#">EasyRequest</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showTechnicianRequests()">Demandes Techniciens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showClientRequests()">Demandes Clients</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showPayments()">Paiements</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showStatistics()">Statistiques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showHistory()">Historique</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showSendRequestForm()">Envoyer une Demande</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <h2>Tableau de Bord</h2>
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header">Total Demandes</div>
+                    <div class="card-body">
+                        <p class="card-text">150</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header">Demandes en Cours</div>
+                    <div class="card-body">
+                        <p class="card-text">30</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header">Demandes Terminées</div>
+                    <div class="card-body">
+                        <p class="card-text">120</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="card">
+                    <div class="card-header">Demandes Refusées</div>
+                    <div class="card-body">
+                        <p class="card-text">10</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technician Requests Page -->
+    <div id="technicianRequestsPage" class="container mt-5" style="display: none;">
+        <h2>Demandes des Techniciens</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Priorité</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Installation de caméras</td>
+                    <td>Installation</td>
+                    <td><span class="badge badge-danger priority-badge">Haute</span></td>
+                    <td>2025-04-16</td>
+                    <td><span class="badge badge-warning">En cours</span></td>
+                    <td>
+                        <button class="btn btn-custom" onclick="changeStatus(1)">Changer Statut</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Maintenance système</td>
+                    <td>Maintenance</td>
+                    <td><span class="badge badge-success priority-badge">Basse</span></td>
+                    <td>2025-04-18</td>
+                    <td><span class="badge badge-success">Terminé</span></td>
+                    <td>
+                        <button class="btn btn-custom" onclick="changeStatus(2)">Changer Statut</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Client Requests Page -->
+    <div id="clientRequestsPage" class="container mt-5" style="display: none;">
+        <h2>Demandes des Clients</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Priorité</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Événement à gérer</td>
+                    <td>Installation</td>
+                    <td><span class="badge badge-danger priority-badge">Haute</span></td>
+                    <td>2025-04-15</td>
+                    <td><span class="badge badge-success">Acceptée</span></td>
+                    <td>
+                        <button class="btn btn-custom" onclick="assignTechnician(1)">Attribuer</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Send Request Form Page -->
+    <div id="sendRequestFormPage" class="container mt-5" style="display: none;">
+        <h2>Envoyer une Demande</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <form id="sendRequestForm">
+            <div class="form-group">
+                <label for="requestDescription">Description</label>
+                <textarea class="form-control" id="requestDescription" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="requestType">Type de Demande</label>
+                <select class="form-control" id="requestType" required>
+                    <option value="Installation">Installation</option>
+                    <option value="Maintenance">Maintenance</option>
+                    <option value="Réparation">Réparation</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="requestPriority">Priorité</label>
+                <select class="form-control" id="requestPriority" required>
+                    <option value="Haute">Haute</option>
+                    <option value="Moyenne">Moyenne</option>
+                    <option value="Basse">Basse</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="requestDate">Date</label>
+                <input type="date" class="form-control" id="requestDate" required>
+            </div>
+            <button type="submit" class="btn btn-custom">Envoyer Demande</button>
+        </form>
+    </div>
+
+    <!-- Payments Page -->
+    <div id="paymentsPage" class="container mt-5" style="display: none;">
+        <h2>Suivi des Paiements</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>Montant</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Client A</td>
+                    <td>300 €</td>
+                    <td><span class="badge badge-success">Payé</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Statistics Page -->
+    <div id="statisticsPage" class="container mt-5" style="display: none;">
+        <h2>Statistiques des Demandes</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <div>
+            <p>Graphiques des demandes par statut et par date à venir.</p>
+        </div>
+    </div>
+
+    <!-- History Page -->
+    <div id="historyPage" class="container mt-5" style="display: none;">
+        <h2>Historique des Demandes</h2>
+        <button class="btn btn-light mb-4" onclick="showDashboard()">Retour au Tableau de Bord</button>
+        <table class="table table-bordered table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Demande de caméra</td>
+                    <td>Installation</td>
+                    <td><span class="badge badge-success">Terminé</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Handle login and dashboard navigation
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            showDashboard();
+        });
+
+        // Show the dashboard page
+        function showDashboard() {
+            hideAllPages();
+            document.getElementById('dashboardPage').style.display = 'block';
+        }
+
+        // Show Technician Requests page
+        function showTechnicianRequests() {
+            hideAllPages();
+            document.getElementById('technicianRequestsPage').style.display = 'block';
+        }
+
+        // Show Client Requests page
+        function showClientRequests() {
+            hideAllPages();
+            document.getElementById('clientRequestsPage').style.display = 'block';
+        }
+
+        // Show Payments page
+        function showPayments() {
+            hideAllPages();
+            document.getElementById('paymentsPage').style.display = 'block';
+        }
+
+        // Show Statistics page
+        function showStatistics() {
+            hideAllPages();
+            document.getElementById('statisticsPage').style.display = 'block';
+        }
+
+        // Show History page
+        function showHistory() {
+            hideAllPages();
+            document.getElementById('historyPage').style.display = 'block';
+        }
+
+        // Show the form to send a request
+        function showSendRequestForm() {
+            hideAllPages();
+            document.getElementById('sendRequestFormPage').style.display = 'block';
+        }
+
+        // Hide all pages
+        function hideAllPages() {
+            const pages = document.querySelectorAll('.container');
+            pages.forEach(page => {
+                page.style.display = 'none';
+            });
+        }
+
+        // Handle changing request status
+        function changeStatus(id) {
+            alert('Changer le statut pour la demande ID: ' + id);
+        }
+
+        // Handle assigning technician
+        function assignTechnician(id) {
+            alert('Attribuer un technicien à la demande ID: ' + id);
+        }
+    </script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+  
+
