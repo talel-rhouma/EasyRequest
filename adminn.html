@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EasyRequest Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: #0e0e0e;
+      --main-yellow: #ffcc00;
+      --card-bg: #1a1a1a;
+      --text-light: #f1f1f1;
+    }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-light);
+    }
+    .login-container, .dashboard {
+      display: none;
+    }
+    .login-container {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--main-bg);
+    }
+    .login-box {
+      background-color: var(--card-bg);
+      padding: 40px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    }
+    .login-box h2 {
+      color: var(--main-yellow);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login-box input, .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 4px;
+      border: none;
+    }
+    .login-box input {
+      background-color: #111;
+      color: var(--text-light);
+      border: 1px solid var(--main-yellow);
+    }
+    .login-box button {
+      background-color: var(--main-yellow);
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .dashboard {
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #111;
+      height: 100vh;
+      position: fixed;
+      padding-top: 20px;
+    }
+    .sidebar h2 {
+      color: var(--main-yellow);
+      text-align: center;
+    }
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+      color: var(--text-light);
+      transition: 0.3s;
+    }
+    .sidebar a:hover {
+      background-color: #222;
+    }
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+      width: 100%;
+    }
+    .section {
+      display: none;
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 204, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .section.active {
+      display: block;
+    }
+    .section h3 {
+      color: var(--main-yellow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid var(--main-yellow);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #222;
+    }
+    select {
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #111;
+      border: 1px solid var(--main-yellow);
+      color: var(--text-light);
+      width: 100%;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Connexion -->
+  <div class="login-container" id="loginPage">
+    <div class="login-box">
+      <h2>Connexion Admin</h2>
+      <input type="text" id="username" placeholder="Nom d'utilisateur">
+      <input type="password" id="password" placeholder="Mot de passe">
+      <button onclick="login()">Se connecter</button>
+    </div>
+  </div>
+
+  <!-- Interface Admin -->
+  <div class="dashboard" id="adminDashboard">
+    <div class="sidebar">
+      <h2>EasyRequest</h2>
+      <a href="#" onclick="showSection('dashboard')"><i class="fas fa-chart-line"></i> Tableau de bord</a>
+      <a href="#" onclick="showSection('demandes')"><i class="fas fa-tasks"></i> Demandes</a>
+      <a href="#" onclick="showSection('clients')"><i class="fas fa-user"></i> Clients</a>
+      <a href="#" onclick="showSection('techniciens')"><i class="fas fa-user-cog"></i> Techniciens</a>
+      <a href="#" onclick="showSection('ressources')"><i class="fas fa-cubes"></i> Ressources</a>
+      <a href="#" onclick="showSection('paiements')"><i class="fas fa-credit-card"></i> Paiements</a>
+      <a href="#" onclick="showSection('notifications')"><i class="fas fa-bell"></i> Notifications</a>
+      <a href="#" onclick="showSection('historique')"><i class="fas fa-history"></i> Historique</a>
+      <a href="#" onclick="showSection('parametres')"><i class="fas fa-cog"></i> Paramètres</a>
+    </div>
+    <div class="main-content">
+      <div id="dashboard" class="section active">
+        <h3>Tableau de bord</h3>
+        <p>Statistiques globales et graphiques.</p>
+      </div>
+      <div id="demandes" class="section">
+        <h3>Gestion des demandes</h3>
+        <select id="typeDemande" onchange="filterRequests()">
+          <option value="all">Toutes les demandes</option>
+          <option value="materiel">Demande de matériel</option>
+          <option value="technique">Problème technique</option>
+          <option value="autre">Autre demande</option>
+        </select>
+        
+        <!-- Demandes des Clients -->
+        <h4>Demandes des Clients</h4>
+        <table id="clientRequestsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Client</th>
+              <th>Type de demande</th>
+              <th>Status</th>
+              <th>Technicien</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-type="materiel">
+              <td>#001</td>
+              <td>Jean Dupont</td>
+              <td>Demande de matériel</td>
+              <td>En attente</td>
+              <td>Technicien A</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+            <tr data-type="technique">
+              <td>#002</td>
+              <td>Marie Dubois</td>
+              <td>Problème technique</td>
+              <td>En cours</td>
+              <td>Technicien B</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+            <tr data-type="autre">
+              <td>#003</td>
+              <td>Paul Martin</td>
+              <td>Autre demande</td>
+              <td>Terminée</td>
+              <td>Technicien C</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Demandes des Techniciens -->
+        <h4>Demandes des Techniciens</h4>
+        <table id="technicianRequestsTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Technicien</th>
+              <th>Type de demande</th>
+              <th>Status</th>
+              <th>Client</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-type="technique">
+              <td>#004</td>
+              <td>Technicien D</td>
+              <td>Problème technique</td>
+              <td>En attente</td>
+              <td>Client E</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+            <tr data-type="materiel">
+              <td>#005</td>
+              <td>Technicien E</td>
+              <td>Demande de matériel</td>
+              <td>En cours</td>
+              <td>Client F</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+            <tr data-type="autre">
+              <td>#006</td>
+              <td>Technicien F</td>
+              <td>Autre demande</td>
+              <td>Terminée</td>
+              <td>Client G</td>
+              <td><button>Modifier statut</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Notifications -->
+      <div id="notifications" class="section">
+        <h3>Notifications</h3>
+        <ul>
+          <li><strong>Nouvelle demande de matériel :</strong> Client Jean Dupont a soumis une demande de matériel, en attente de traitement.</li>
+          <li><strong>Problème technique :</strong> Client Marie Dubois a signalé un problème technique, en cours de traitement.</li>
+          <li><strong>Changement de statut :</strong> La demande de Paul Martin a été marquée comme terminée par Technicien C.</li>
+        </ul>
+      </div>
+
+      <!-- Paiements -->
+      <div id="paiements" class="section">
+        <h3>Gestion des Paiements</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID Paiement</th>
+              <th>Client</th>
+              <th>Montant</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#1001</td>
+              <td>Jean Dupont</td>
+              <td>200€</td>
+              <td>15/04/2025</td>
+              <td>Payé</td>
+            </tr>
+            <tr>
+              <td>#1002</td>
+              <td>Marie Dubois</td>
+              <td>150€</td>
+              <td>14/04/2025</td>
+              <td>En attente</td>
+            </tr>
+            <tr>
+              <td>#1003</td>
+              <td>Paul Martin</td>
+              <td>300€</td>
+              <td>13/04/2025</td>
+              <td>Payé</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Autres sections... -->
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      if (username === "admin" && password === "admin123") {
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("adminDashboard").style.display = "flex";
+      } else {
+        alert("Identifiants incorrects !");
+      }
+    }
+
+    function showSection(id) {
+      const sections = document.querySelectorAll(".section");
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function filterRequests() {
+      const filter = document.getElementById("typeDemande").value;
+      const clientRequests = document.querySelectorAll("#clientRequestsTable tbody tr");
+      const technicianRequests = document.querySelectorAll("#technicianRequestsTable tbody tr");
+      
+      clientRequests.forEach(request => {
+        if (filter === "all" || request.getAttribute("data-type") === filter) {
+          request.style.display = "";
+        } else {
+          request.style.display = "none";
+        }
+      });
+
+      technicianRequests.forEach(request => {
+        if (filter === "all" || request.getAttribute("data-type") === filter) {
+          request.style.display = "";
+        } else {
+          request.style.display = "none";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
