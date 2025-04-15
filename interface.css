@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  background-color: #0f0f0f;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.services-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.title-white {
+  color: white;
+}
+
+.title-orange {
+  color: orange;
+}
+
+.description {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.service-card {
+  background-color: #1e2a45;
+  padding: 30px 20px;
+  border-radius: 15px;
+  width: 220px;
+  transition: transform 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-icon {
+  font-size: 40px;
+  color: orange;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
