@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Créer un compte</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="form-container">
+    <h2>CREATE A NEW ACCOUNT</h2>
+    <form id="registrationForm">
+      <label for="name">Nom</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="lastName">Prénom</label>
+      <input type="text" id="lastName" name="lastName" required />
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="username@gmail.com" required />
+
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password" name="password" required />
+
+      <label for="confirm_password">Confirmer le mot de passe</label>
+      <input type="password" id="confirm_password" name="confirm_password" required />
+
+      <label for="departement">Département</label>
+      <input type="text" id="departement" name="departement" required />
+
+      <button type="submit">Créer un compte</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      // Récupération des valeurs du formulaire
+      const name = document.getElementById("name").value.trim();
+      const lastName = document.getElementById("lastName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm_password").value;
+      const departement = document.getElementById("departement").value.trim();
+
+      // Regex : uniquement lettres
+      const nameRegex = /^[a-zA-Z]+$/;
+
+      if (!nameRegex.test(name) || !nameRegex.test(lastName)) {
+        alert("Le nom et le prénom ne doivent contenir que des lettres !");
+        return;
+      }
+
+      // Regex Email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Veuillez entrer un email valide !");
+        return;
+      }
+
+      // Vérification de la longueur du mot de passe
+      if (password.length < 5) {
+        alert("Le mot de passe doit contenir au moins 6 caractères !");
+        return;
+      }
+
+      // Mots de passe correspondants ?
+      if (password !== confirmPassword) {
+        alert("Les mots de passe ne correspondent pas !");
+        return;
+      }
+
+      // Envoi des données au backend
+      try {
+        const response = await fetch("http://localhost:3000/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            name: name,
+            lastName: lastName,
+            email: email,
+            password: password,
+            departement: departement
+          })
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert(result.message || "Inscription réussie !");
+          // Redirection vers la page de connexion après inscription réussie
+          window.location.href = "login.html";
+        } else {
+          alert(result.message || "Erreur lors de l'inscription.");
+        }
+      } catch (error) {
+        console.error("Erreur d'inscription :", error);
+        alert("Une erreur est survenue lors de l'inscription !");
+      }
+    });
+  </script>
+</body>
+</html>
