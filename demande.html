@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Demande - EventX</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: #000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Partie gauche de la navbar */
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 80px; 
+    }
+    
+    /* Logo + texte à côté */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+    }
+    
+    .logo-group img {
+      height: 45px;
+      margin-right: 10px;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 1px;
+    }
+    
+    .logo-text .highlight {
+      color: #FFD700;
+    }
+    
+    /* Liens */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 70px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #ccc;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* Partie droite de la navbar */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Icône utilisateur */
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-icon:hover {
+      background-color: #444;
+    }
+
+    .user-icon i {
+      color: #FFD700;
+      font-size: 1.2rem;
+    }
+
+    /* Formulaire de demande */
+    .demande-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 30px;
+    }
+
+    .demande-title {
+      font-size: 2.5rem;
+      color: #FFD700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .demande-form {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #FFD700;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #333;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #FFD700;
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: #FFD700;
+      color: #000;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 40px auto 0;
+      width: 200px;
+      text-align: center;
+    }
+
+    .submit-btn:hover {
+      background-color: #e6c200;
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #FFD700;
+      color: #000;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+  <!-- Lien vers Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <!-- Logo + texte à côté -->
+      <div class="logo-group">
+        <img src="../images/logo.png" alt="Logo EventX">
+        <span class="logo-text">Event<span class="highlight">X.</span></span>
+      </div>
+  
+      <!-- Liens -->
+      <ul class="nav-links">
+        <li><a href="home.html">HOME</a></li>
+        <li><a href="service.html">NOS SERVICES</a></li>
+        <li><a href="contactUs.html">CONTACT US</a></li>
+        <li><a href="demande.html">DEMANDE</a></li>
+      </ul>
+    </div>
+
+    <!-- Partie droite avec icône utilisateur -->
+    <div class="navbar-right">
+      <div class="user-icon" title="Mon compte">
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Formulaire de demande -->
+  <div class="demande-container">
+    <h1 class="demande-title">Formulaire de Demande</h1>
+    
+    <form class="demande-form" id="demandeForm">
+      <div class="form-group">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="telephone">Numéro de téléphone</label>
+        <input type="tel" id="telephone" name="telephone" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="type">Type de demande</label>
+        <select id="type" name="type" required>
+          <option value="">-- Sélectionnez un type --</option>
+          <option value="technique">Support technique</option>
+          <option value="materiel">Location de matériel</option>
+          <option value="evenement">Organisation d'événement</option>
+          <option value="autre">Autre demande</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Détails de votre demande</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">Envoyer</button>
+    </form>
+  </div>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    Votre demande a été envoyée avec succès!
+  </div>
+
+  <script>
+    document.getElementById('demandeForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Récupération des valeurs du formulaire
+      const nom = document.getElementById('nom').value;
+      const telephone = document.getElementById('telephone').value;
+      const type = document.getElementById('type').value;
+      const message = document.getElementById('message').value;
+      
+      // Ici vous pourriez ajouter un appel AJAX pour envoyer les données au serveur
+      // Pour cet exemple, nous affichons simplement une notification
+      
+      // Afficher la notification
+      const notification = document.getElementById('notification');
+      notification.style.display = 'block';
+      
+      // Masquer la notification après 4 secondes
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 4000);
+      
+      // Réinitialiser le formulaire
+      this.reset();
+    });
+
+    // Gestion du clic sur l'icône utilisateur
+    document.querySelector('.user-icon').addEventListener('click', function() {
+      alert("Fonctionnalité 'Mon compte' à implémenter");
+    });
+  </script>
+</body>
+</html>

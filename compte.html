@@ -1,0 +1,117 @@
+<!DOCTYPE html><html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Compte</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial Black', sans-serif;
+            background-color: #000;
+            color: white;
+            text-align: center;
+        }.container {
+        padding: 20px;
+    }
+
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: #ccc;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .camera-icon {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    h2 {
+        margin-top: 10px;
+    }
+
+    .button-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .button {
+        background-color: #f1b208;
+        padding: 20px;
+        border-radius: 10px;
+        color: #000;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+
+    .button:hover {
+        transform: scale(1.05);
+    }
+
+    .button i {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .top-left-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: #111;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+</head>
+<body>
+    <div class="top-left-button">&#10005;</div>
+    <div class="container">
+        <div class="profile-img">
+            <div class="camera-icon">
+                <i class="fas fa-camera"></i>
+            </div>
+        </div>
+        <h2>WELCOME TALEL BEN RHOUMA</h2><div class="button-grid">
+        <div class="button">
+            <i class="fas fa-id-card"></i>
+            INFORMATIONS PERSONNELLES
+        </div>
+        <div class="button">
+            <i class="fas fa-history"></i>
+            HISTORIQUE
+        </div>
+        <div class="button">
+            <i class="fas fa-user-cog"></i>
+            GERER VOTRE COMPTE
+        </div>
+        <div class="button">
+            <i class="fas fa-question-circle"></i>
+            CENTRE D’AIDE
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EventX</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Navbar */
+    .navbar {
+      background-color: #000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Partie gauche de la navbar */
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 80px; 
+    }
+    
+    /* Logo + texte à côté */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      margin-right: 40px;
+    }
+    
+    .logo-group img {
+      height: 45px;
+      margin-right: 10px;
+    }
+    
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 1px;
+    }
+    
+    .logo-text .highlight {
+      color: #FFD700;
+    }
+    
+    /* Liens */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 70px;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: #ccc;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      letter-spacing: 1px;
+    }
+    
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    /* Partie droite de la navbar */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Icône utilisateur */
+    .user-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .user-icon:hover {
+      background-color: #444;
+    }
+
+    .user-icon i {
+      color: #FFD700;
+      font-size: 1.2rem;
+    }
+
+    .hero-section h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 30px;
+      color: white;
+    }
+    
+    .hero-section p {
+      font-size: 1.3rem;
+      color: #ddd;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+
+    .hero-section {
+      max-width: 1000px;
+      margin: 120px auto 0 auto;
+      padding: 0 30px;
+      text-align: left;
+    } 
+  </style>
+  <!-- Lien vers Font Awesome pour les icônes -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-left">
+      <!-- Logo + texte à côté -->
+      <div class="logo-group">
+        <img src="../images/logo.png" alt="Logo EventX">
+        <span class="logo-text">Event<span class="highlight">X.</span></span>
+      </div>
+  
+      <!-- Liens -->
+      <ul class="nav-links">
+        <li><a href="#">HOME</a></li>
+        <li><a href="service.html">NOS SERVICES</a></li>
+        <li><a href="contactUs.html">CONTACT US</a></li>
+        <li><a href="demande.html">DEMANDE</a></li>
+      </ul>
+    </div>
+
+    <!-- Partie droite avec icône utilisateur -->
+    <div class="navbar-right">
+      <a href="compte.html" class="user-icon" title="Mon compte">
+    <i class="fas fa-user"></i>
+  </a>
+    </div>
+  </nav>
+  
+
+  <!-- Section Présentation -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2>Transformez Chaque Événement en Expérience Inoubliable ! ✨</h2>
+      <p>
+        Ici, chez <span class="highlight">EventX</span>, nous ne faisons pas que brancher des câbles et installer du matériel… Nous créons des émotions.
+      </p>
+      <p>
+        Vous organisez un congrès captivant, un séminaire inspirant, ou un événement d'entreprise mémorable ?
+      </p>
+      <p>
+        Parce que chaque détail compte, nous transformons vos idées en spectacles vivants. Faites de votre événement une expérience multisensorielle qui marque les esprits. Prêt à impressionner votre public ?
+      </p>
+    </div>
+  </section>
+
+</body>
+</html>
