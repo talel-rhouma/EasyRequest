@@ -1,0 +1,88 @@
+/* Réglages de base */
+body {
+    background-color: #000;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #000;
+    padding: 20px 40px;
+  }
+  
+  /* Partie gauche de la navbar */
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* positionner à gauche */
+    gap: 80px; 
+  }
+  
+  /* Logo + texte à côté */
+  .logo-group {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+  }
+  
+  .logo-group img {
+    height: 45px;
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    letter-spacing: 1px;
+  }
+  
+  .logo-text .highlight {
+    color: #FFD700;
+  }
+  
+  /* Liens */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 70px;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    letter-spacing: 1px;
+  }
+  
+  .nav-links a:hover {
+    color: #fff;
+  }
+  .hero-section h2 {
+    font-size: 2.5rem;      /* Taille du titre */
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: white;
+  }
+  
+  .hero-section p {
+    font-size: 1.3rem;      /* Taille des paragraphes */
+    color: #ddd;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+  .hero-section {
+    max-width: 1000px;
+    margin: 120px auto 0 auto;
+    padding: 0 30px;
+    text-align: left;
+  }  
+  
+  
+  
+  
