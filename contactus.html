@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    header {
+      padding: 20px;
+      text-align: left;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      background: url('logo.png') no-repeat center;
+      background-size: contain;
+      border-radius: 50%;
+    }
+
+    .container {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    h2 {
+      font-size: 2em;
+    }
+
+    h2 span {
+      color: #FFC300;
+    }
+
+    .contact-info {
+      text-align: left;
+      margin-bottom: 30px;
+      color: #fff;
+    }
+
+    .contact-info p {
+      margin: 10px 0;
+    }
+
+    .contact-info span {
+      color: #FFC300;
+      font-weight: bold;
+    }
+
+    .form-group {
+      margin: 10px auto;
+      width: 300px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      background: #1e2a38;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background-color: #FFC300;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .social-icons {
+      margin-top: 30px;
+    }
+
+    .social-icons i {
+      margin: 0 10px;
+      font-size: 18px;
+      color: white;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: auto;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form-group {
+        width: 90%;
+      }
+
+      .contact-info {
+        text-align: center;
+      }
+    }
+  </style>
+  <script>
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !message) {
+        alert("Veuillez remplir tous les champs.");
+        return false;
+      }
+      alert("Message envoyé !");
+      return true;
+    }
+  </script>
+  <!-- Liens vers les icônes Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo"></div>
+  </header>
+
+  <div class="container">
+    <h2>Contact <span>US</span></h2>
+    <div class="row">
+      <div class="contact-info">
+        <p><span>Address _</span> Rue kairouen 1918</p>
+        <p><span>Téléphone _</span> +216 50644870</p>
+        <p><span>E mail _</span> bnswael@gmail.com</p>
+        <p><span>Website _</span> www.EventX.tn</p>
+      </div>
+      <form onsubmit="return validateForm()">
+        <div class="form-group">
+          <input type="text" id="name" placeholder="Nom" />
+        </div>
+        <div class="form-group">
+          <textarea id="message" rows="4" placeholder="Message"></textarea>
+        </div>
+        <button type="submit" class="btn">Contact us</button>
+      </form>
+    </div>
+
+    <div class="social-icons">
+      <i class="fab fa-facebook-f"></i>
+      <i class="fab fa-twitter"></i>
+      <i class="fab fa-linkedin-in"></i>
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-youtube"></i>
+      <i class="fab fa-pinterest-p"></i>
+    </div>
+  </div>
+
+</body>
+</html>
